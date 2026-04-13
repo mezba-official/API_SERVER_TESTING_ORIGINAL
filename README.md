@@ -34,7 +34,7 @@ User Requests Quotes
    [Save Quote Request]
         ↓
    [Fetch from All Providers in Parallel]
-   HDFC Ergo | ICICI Lombard | Star Health
+   QIC | DIC | NIA
         ↓
    [Compare & Score Quotes]
    Premium(40%) + Benefits(30%) + Coverage(15%) + Claims(10%) + Network(5%)
@@ -63,7 +63,7 @@ User Requests Quotes
 ```json
 {
   "best_quote": {
-    "provider": "HDFC Ergo",
+    "provider": "QIC",
     "premium": 8500.00,
     "coverage": 500000.00,
     "benefits": ["Cashless Hospitals", "No Claim Bonus"],
@@ -71,9 +71,9 @@ User Requests Quotes
     "is_best": true
   },
   "quotes": [
-    {"provider": "HDFC Ergo", "premium": 8500, "score": 92.45},
-    {"provider": "Star Health", "premium": 8700, "score": 90.15},
-    {"provider": "ICICI Lombard", "premium": 9100, "score": 88.20}
+    {"provider": "QIC", "premium": 8500, "score": 92.45},
+    {"provider": "DIC", "premium": 8700, "score": 90.15},
+    {"provider": "NIA", "premium": 9100, "score": 88.20}
   ],
   "comparison_summary": {
     "count": 3,
@@ -185,9 +185,9 @@ python manage.py test api_set1.test_quotation -v 2
 python manage.py test api_set1.test_quotation.QuoteAPITestCase -v 2
 
 # Test providers
-python manage.py test api_set1.test_quotation.HDFCProviderTestCase
-python manage.py test api_set1.test_quotation.ICICIProviderTestCase
-python manage.py test api_set1.test_quotation.StarProviderTestCase
+python manage.py test api_set1.test_quotation.QICProviderTestCase
+python manage.py test api_set1.test_quotation.DICProviderTestCase
+python manage.py test api_set1.test_quotation.NIAProviderTestCase
 
 # Test aggregation
 python manage.py test api_set1.test_quotation.QuoteAggregatorTestCase
@@ -224,9 +224,9 @@ api_set1/
 │   ├── comparator.py            # Smart comparison & scoring
 │   └── providers/
 │       ├── base.py              # Abstract provider
-│       ├── hdfc.py              # HDFC Ergo integration
-│       ├── icici.py             # ICICI Lombard integration
-│       └── star.py              # Star Health integration
+│       ├── DIC.py              # DIC integration
+│       ├── NID.py             # NIA integration
+│       └── QIC.py              # QIC integration
 ```
 
 ### Technology Stack
@@ -257,9 +257,9 @@ Score = (Premium × 0.40) + (Benefits × 0.30) + (Coverage × 0.15) +
 | Hospital Network | 5% | Larger network = higher score |
 
 **Example:**
-- HDFC: 8,500 premium, 4 benefits → Score: 92.45 ⭐ Best
-- Star: 8,700 premium, 3 benefits → Score: 90.15
-- ICICI: 9,100 premium, 5 benefits → Score: 88.20
+- QIC: 8,500 premium, 4 benefits → Score: 92.45 ⭐ Best
+- DIC: 8,700 premium, 3 benefits → Score: 90.15
+- NIA: 9,100 premium, 5 benefits → Score: 88.20
 
 ---
 
@@ -457,7 +457,7 @@ This project is part of the PROMISE INSURE API Test Application.
 
 ## 🎯 Key Achievements
 
-- ✅ **Multi-Provider System** - Aggregates from HDFC, ICICI, Star (extensible)
+- ✅ **Multi-Provider System** - Aggregates from QIC, DIC, NIA (extensible)
 - ✅ **Parallel Processing** - 3-4x faster than sequential
 - ✅ **Smart Comparison** - Weighted scoring algorithm
 - ✅ **Secure API** - JWT auth + user isolation
